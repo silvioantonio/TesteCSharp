@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Text.RegularExpressions;
 using ByteBank.Modelos;
 using Humanizer;
 
 namespace ByteBank.SistemaAgencia
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
@@ -54,6 +57,14 @@ namespace ByteBank.SistemaAgencia
             //-----------------------------------ORDENAÇÃO DE ORDERBY-----------------------------
 
             TestarIOrderedEnumerable();
+
+            //-----------------------------------LER ARQUIVOS DIRETAMENTE-------------------------------------
+
+            //TestarLidandoFileStreamDiretamente();
+
+            //-----------------------------------LER ARQUIVOS STREAM READER-------------------------------------
+
+            TestarLerArquivos();
 
             Console.Read();
             
@@ -246,5 +257,20 @@ namespace ByteBank.SistemaAgencia
             }
         }
 
+        static void TestarLerArquivos()
+        {
+            var enderecoArquivo = "../contas.txt";
+
+            using (var fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
+            using (var leitor = new StreamReader(fluxoDeArquivo))
+            {
+                while (!leitor.EndOfStream)
+                {
+                    var linha = leitor.ReadLine();
+
+                    Console.WriteLine(linha);
+                }
+            }
+        }
     }
 }

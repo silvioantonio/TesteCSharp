@@ -11,5 +11,10 @@ namespace ByteBank.SistemaAgencia
         public static void PrintLn(this object obj){
             Console.WriteLine(obj);
         }
+
+        public static void Print(this object obj)
+        {
+            Console.Write(obj);
+        }
     }
 }

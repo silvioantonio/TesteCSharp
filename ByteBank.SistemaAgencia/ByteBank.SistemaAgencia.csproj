@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Comparadores\ComparadorContaCorrentePorAgencia.cs" />
     <Compile Include="ExtratorValorArgumentosUrl.cs" />
+    <Compile Include="LidandoComFileStreamDiretamente.cs" />
     <Compile Include="Lista.cs" />
     <Compile Include="ListaDeContaCorrente.cs" />
     <Compile Include="ListaDeObject.cs" />
@@ -64,6 +65,9 @@
       <Project>{8c15ba66-ea21-468c-83c2-854c68767b10}</Project>
       <Name>ByteBank.Modelos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImportacaoExportacao\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
