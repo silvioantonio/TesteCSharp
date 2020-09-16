@@ -64,7 +64,11 @@ namespace ByteBank.SistemaAgencia
 
             //-----------------------------------LER ARQUIVOS STREAM READER-------------------------------------
 
-            TestarLerArquivos();
+            //TestarLerArquivos();
+
+            //-----------------------------------LER ARQUIVOS STREAM READER E CONVERTER-------------------------------------
+
+            TestarLerArquivosEConverter();
 
             Console.Read();
             
@@ -271,6 +275,59 @@ namespace ByteBank.SistemaAgencia
                     Console.WriteLine(linha);
                 }
             }
+        }
+
+        static void TestarLerArquivosEConverter()
+        {
+            var enderecoArquivo = "../contas.txt";
+
+            using (var fluxoDeArquivo = new FileStream(enderecoArquivo, FileMode.Open))
+            using (var leitor = new StreamReader(fluxoDeArquivo))
+            {
+                while (!leitor.EndOfStream)
+                {
+                    var linha = leitor.ReadLine();
+
+                    var contaCorrente = ConverterStringparaContaCorrente(linha);
+
+                    Out.PrintLn($"{contaCorrente.Titular.Nome} -> Conta numero: {contaCorrente.Numero}, ag {contaCorrente.Agencia}, Saldo: {contaCorrente.Saldo}");
+                }
+            }
+
+            ContaCorrente ConverterStringparaContaCorrente(string linha)
+            {
+                // Dessa forma eu consigo ler arquivos separados por '<space>', mas caso eu tenha dados como nomes que sao separados por espaços,
+                // irei pegar apenas o primeiro nome e descartar o resto...
+                // para resolver isso, existe o padrao de arquivos CSV, que sao separados por ',' 
+                // SEPARADO POR '<space>'
+                //string[] campos = linha.Split(' ');
+
+                // O ARQUIVO .TXT FOI ALTERADO PARA O PADRAO CSV
+
+                // SEPARADO POR ','
+                string[] campos = linha.Split(',');
+
+                var agencia = campos[0];
+                var numero = campos[1];
+                var saldo = campos[2].Replace('.', ',');
+                var nomeTitular = campos[3];
+
+                var agenciaComoInt = int.Parse(agencia);
+                var numeroComoInt = int.Parse(numero);
+                var saldoComoDouble = double.Parse(saldo);
+
+                var titular = new Cliente
+                {
+                    Nome = nomeTitular
+                };
+
+                var resultado = new ContaCorrente(agenciaComoInt, numeroComoInt);
+                resultado.Depositar(saldoComoDouble);
+                resultado.Titular = titular;
+
+                return resultado;
+            }
+
         }
     }
 }
