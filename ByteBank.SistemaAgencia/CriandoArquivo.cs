@@ -9,7 +9,7 @@ namespace ByteBank.SistemaAgencia
 {
     partial class Program
     {
-        static void CriarArquivo()
+        static void CriarArquivoTratandoBytes()
         {
             var caminhoNovoArquivo = "../contasExportadas.csv";
 
@@ -60,6 +60,37 @@ namespace ByteBank.SistemaAgencia
 
             }
             Out.PrintLn("Operação para gerar arquivos finaizado...");
+        }
+
+        static void TesteEscreverArquivoBinario()
+        {
+            var caminhoNovoArquivo = "../arquivoBinario.txt";
+
+            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            using (var escritor = new BinaryWriter(fluxoDeArquivo))
+            {
+                escritor.Write(098); // numero da agencia
+                escritor.Write(51142); // numero da conta
+                escritor.Write(6899.55); // saldo
+                escritor.Write("Fulano");
+
+            }
+        }
+
+        static void TesteLerArquivoBinario()
+        {
+            var caminhoNovoArquivo = "../arquivoBinario.txt";
+
+            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            using (var leitor = new BinaryReader(fluxoDeArquivo))
+            {
+                var agencia = leitor.ReadInt32();
+                var numeroConta = leitor.ReadInt32();
+                var saldo = leitor.ReadDouble();
+                var titular = leitor.ReadString();
+
+                Out.PrintLn($"{agencia}/{numeroConta} {titular} {saldo}");
+            }
         }
     }
 }

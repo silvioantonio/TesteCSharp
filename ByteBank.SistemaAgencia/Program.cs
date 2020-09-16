@@ -76,7 +76,9 @@ namespace ByteBank.SistemaAgencia
 
             //CriarArquivoComWriter();
 
-            TesteFLUSHCriarArquivoComWriter();
+            //TesteFLUSHCriarArquivoComWriter();
+
+            TesteLerArquivoBinario();
 
             Console.Read();
             
