@@ -60,25 +60,31 @@ namespace ByteBank.SistemaAgencia
 
             //-----------------------------------LER ARQUIVOS DIRETAMENTE-------------------------------------
 
-            //TestarLidandoFileStreamDiretamente();
+            TestarLidandoFileStreamDiretamente();
 
             //-----------------------------------LER ARQUIVOS STREAM READER-------------------------------------
 
-            //TestarLerArquivos();
+            TestarLerArquivos();
 
             //-----------------------------------LER ARQUIVOS STREAM READER E CONVERTER-------------------------------------
 
-            //TestarLerArquivosEConverter();
+            TestarLerArquivosEConverter();
 
             //-----------------------------------CRIAR ARQUIVOS FILE STREAM--------------------------
 
-            //CriarArquivo();
+            CriarArquivoTratandoBytes();
 
-            //CriarArquivoComWriter();
+            CriarArquivoComWriter();
 
-            //TesteFLUSHCriarArquivoComWriter();
+            TesteFLUSHCriarArquivoComWriter();
+
+            TesteEscreverArquivoBinario();
 
             TesteLerArquivoBinario();
+
+            //-----------------------------------CRIAR ARQUIVOS FILE STREAM COM DADOS DO  CONSOLE--------------------------
+
+            UsandoStreamEntrada();
 
             Console.Read();
             

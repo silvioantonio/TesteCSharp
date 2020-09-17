@@ -81,7 +81,7 @@ namespace ByteBank.SistemaAgencia
         {
             var caminhoNovoArquivo = "../arquivoBinario.txt";
 
-            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Create))
+            using (var fluxoDeArquivo = new FileStream(caminhoNovoArquivo, FileMode.Open))
             using (var leitor = new BinaryReader(fluxoDeArquivo))
             {
                 var agencia = leitor.ReadInt32();
